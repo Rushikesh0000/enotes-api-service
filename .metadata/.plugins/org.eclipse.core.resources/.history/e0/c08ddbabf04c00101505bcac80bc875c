@@ -1,0 +1,37 @@
+package com.enotes.controller;
+
+import org.springframework.http.HttpStatus;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.enotes.entity.Category;
+import com.enotes.service.impl.CategoryServiceImpl;
+
+@RestController
+@RequestMapping("/api/vl/category")
+public class CategoryController
+{
+
+	private final CategoryServiceImpl categoryserviceImpl;
+	
+	public CategoryController(CategoryServiceImpl categoryserviceImpl)
+	{
+		this.categoryserviceImpl=categoryserviceImpl;
+	}
+	
+	@PostMapping("/save-category")
+	public ResponseEntity<?> saveCategory(@RequestBody Category category )
+	{
+		Boolean saveCategory=categoryserviceImpl.saveCategory(category);
+		
+		if(saveCategory)
+		{
+			return new ResponseEntity<>("saved Successfully....",HttpStatus.CREATED);
+		}
+		
+	}
+}
