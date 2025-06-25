@@ -1,0 +1,60 @@
+package com.enotes.entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+@Entity
+
+public class Category extends BaseModel
+{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer category_id ;
+	
+	private String name ;
+	
+	private String description;
+
+	public Category()
+	{
+		super();
+	}
+
+	public Category(Integer category_id , String name , String description)
+	{
+		super();
+		this.category_id  = category_id ;
+		this.name  = name ;
+		this.description = description;
+	}
+
+	public Integer getId() {
+		return category_id ;
+	}
+
+	public void setId(Integer category_id ) {
+		this.category_id  = category_id ;
+	}
+
+	public String getName() {
+		return name ;
+	}
+
+	public void setName(String name ) {
+		this.name  = name ;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
+	
+}

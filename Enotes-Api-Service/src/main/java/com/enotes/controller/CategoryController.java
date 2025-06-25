@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.enotes.dto.Categorydto;
 import com.enotes.entity.Category;
 import com.enotes.service.impl.CategoryServiceImpl;
 
@@ -29,7 +30,7 @@ public class CategoryController
 	}
 	
 	@PostMapping("/save-category")
-	public ResponseEntity<?> saveCategory(@RequestBody Category category )
+	public ResponseEntity<?> saveCategory(@RequestBody Categorydto category )
 	{
 		Boolean saveCategory=categoryserviceImpl.saveCategory(category);
 		
@@ -47,7 +48,7 @@ public class CategoryController
 	@GetMapping("/category")
 	public ResponseEntity<?> getAllCategory()
 	{
-		List<Category> allCategory=categoryserviceImpl.getAllCategory();
+		List<Categorydto> allCategory=categoryserviceImpl.getAllCategory();
 		
 		if (allCategory == null || allCategory.isEmpty())
 		{

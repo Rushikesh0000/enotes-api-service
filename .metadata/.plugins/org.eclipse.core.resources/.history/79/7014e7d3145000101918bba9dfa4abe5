@@ -1,0 +1,57 @@
+package com.enotes.service.impl;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+
+import com.enotes.dto.Categorydto;
+import com.enotes.entity.Category;
+import com.enotes.repository.CategoryRepository;
+import com.enotes.service.CategoryService;
+
+@Service
+public class CategoryServiceImpl implements CategoryService
+{
+
+	private CategoryRepository categoryRepo;
+	
+	
+	public CategoryServiceImpl(CategoryRepository categoryRepo)
+	{
+		this.categoryRepo=categoryRepo;
+	}
+	
+	
+	public boolean saveCategory(Categorydto categoryDto) 
+	{
+		Category category=new Category();
+		
+		System.out.println(categoryDto.getCategory_name());
+		System.out.println();
+		System.out.println(categoryDto.isIsactive());
+		
+		category.setName(categoryDto.getCategory_name());
+		category.setDescription(categoryDto.getDescription());
+		category.setActive(categoryDto.isIsactive());
+	
+		category.setDeleted(false);
+		category.setCreatedBy(1);
+		category.setCreatedOn(new Date());
+		
+		Category saveCategory= categoryRepo.save(category);
+		
+		return  ObjectUtils.isEmpty(saveCategory)?true:false;
+		
+	}
+
+	public List<Category> getAllCategory()
+	{
+		
+		List<Category>categories=categoryRepo.findAll();		
+		
+		return categories;
+	}
+
+}

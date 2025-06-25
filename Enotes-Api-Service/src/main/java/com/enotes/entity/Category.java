@@ -1,65 +1,53 @@
 package com.enotes.entity;
 
-import java.util.Date;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Entity
+public class Category extends BaseModel {
 
-public class Category extends BaseModel
-{
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer category_id ;
-	
-	private String category_name ;
-	
-	private String description;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer category_id;
 
-	public Category()
-	{
-		super();
-	}
+    @Column(name = "name")
+    private String name;
 
-	public Category(Integer category_id , String category_name , String description)
-	{
-		super();
-		this.category_id  = category_id ;
-		this.category_name  = category_name ;
-		this.description = description;
-	}
+    private String description;
 
-	public Integer getId() {
-		return category_id ;
-	}
+    public Category() {}
 
-	public void setId(Integer category_id ) {
-		this.category_id  = category_id ;
-	}
+    public Category(Integer category_id, String name, String description) {
+        this.category_id = category_id;
+        this.name = name;
+        this.description = description;
+    }
 
-	public String getName() {
-		return category_name ;
-	}
+    public Integer getCategory_id() {
+        return category_id;
+    }
 
-	public void setName(String category_name ) {
-		this.category_name  = category_name ;
-	}
+    public void setCategory_id(Integer category_id) {
+        this.category_id = category_id;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
-	
-	
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
